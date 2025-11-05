@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flight-sim-ci"
+version = "0.1.0"
+description = "Simple 2D flight sim with CI, goldens, latency/loss emulation"
+authors = [{name = "Your Name", email = "you@example.com"}]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "jinja2",
+]
+
+[project.scripts]
+sim-cli = "sim.cli:main"
+
