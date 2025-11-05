@@ -30,11 +30,13 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run pytest
-        run: pytest -q
+        run: PYTHONPATH=${{ github.workspace }} pytest -q
+        env:
+          PYTEST_DISABLE_PLUGIN_AUTOLOAD: 1
 
       - name: Smoke scenario
         run: |
-          python -m sim.cli --scenario takeoff_landing --seed 123 --hz 20 --duration-s 15 \
+          PYTHONPATH=${{ github.workspace }} python -m sim.cli --scenario takeoff_landing --seed 123 --hz 20 --duration-s 15 \
             --out telemetry/ci_run_takeoff_123.csv --golden telemetry/golden_takeoff_landing.csv
 
       - name: Upload artifacts
